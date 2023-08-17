@@ -12,10 +12,16 @@ export const ToDo = () => {
 
   console.log(toDo);
 
-  const handleClick = () => {
+  //Add toDo
+  const add = () => {
     dispatch(ToDoActions.addToDo(toDo));
     setToDo("");
   };
+
+  const deleteItems = (index) => {
+    dispatch(ToDoActions.deleteToDo(index));
+  };
+
   //
   return (
     <div>
@@ -25,11 +31,16 @@ export const ToDo = () => {
         onChange={(e) => setToDo(e.target.value)}
       />
 
-      <button onClick={handleClick}>Add</button>
+      <button onClick={add}>Add</button>
 
       <div>
         {listItems.map((item, index) => {
-          return <li key={index}>{item}</li>;
+          return (
+            <div key={index}>
+              <span>{item}</span>
+              <button onClick={() => deleteItems(item)}>Delete</button>
+            </div>
+          );
         })}
       </div>
     </div>

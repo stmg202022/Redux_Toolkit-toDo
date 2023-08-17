@@ -13,6 +13,14 @@ const ToDoSlice = createSlice({
 
       state.listItems = [...state.listItems, action.payload];
     },
+
+    deleteToDo(state, action) {
+      //   console.log(action.payload);
+
+      state.listItems = state.listItems.filter(
+        (item) => item !== action.payload
+      );
+    },
   },
 });
 
